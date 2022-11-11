@@ -7,24 +7,31 @@ public class Main {
 	
 	public static void main(String[] args) {
 		System.out.println("hi ALGO");
-		System.out.println(fibonacci(20));
-		
-		
+		System.out.println(fibonacci(10));
+		System.out.println(fibonacci(100));
 	}
 	
 	/**
 	 * For 0 and 1 set n as 1, for another use Fibonacci
-	 * formula.
+	 * formula. Use swapping of digit to Optimize calc
 	 *
 	 * @param n Fibonacci number
 	 * @return Fibonacci count
 	 */
-	// slow version
+	// fast version !!!
 	public static long fibonacci(int n) {
-		if (n <= 1) {
-			return n;
-		}
-		return fibonacci(n - 1) + fibonacci(n - 2);
+		long a = 0;
+		long b = 1;
+		long c;
 		
+		if (n == 0)
+			return a;
+		
+		for (int i = 2; i <= n; i++) { // start from 2
+			c = a + b;
+			a = b; //Use swapping of digit to Optimize calc
+			b = c; //Use swapping of digit to Optimize calc
+		}
+		return b;
 	}
 }
