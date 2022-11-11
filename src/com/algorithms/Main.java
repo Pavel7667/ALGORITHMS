@@ -1,37 +1,38 @@
 package com.algorithms;
 
+import java.util.Arrays;
+
 /**
  * Base class for calling method
  */
 public class Main {
-	
-	public static void main(String[] args) {
-		System.out.println("hi ALGO");
-		System.out.println(fibonacci(10));
-		System.out.println(fibonacci(100));
-	}
-	
-	/**
-	 * For 0 and 1 set n as 1, for another use Fibonacci
-	 * formula. Use swapping of digit to Optimize calc
-	 *
-	 * @param n Fibonacci number
-	 * @return Fibonacci count
-	 */
-	// fast version !!!
-	public static long fibonacci(int n) {
-		long a = 0;
-		long b = 1;
-		long c;
-		
-		if (n == 0)
-			return a;
-		
-		for (int i = 2; i <= n; i++) { // start from 2
-			c = a + b;
-			a = b; //Use swapping of digit to Optimize calc
-			b = c; //Use swapping of digit to Optimize calc
-		}
-		return b;
-	}
+
+    public static void main(String[] args) {
+        System.out.println("hi ALGO");
+        int n = 100;
+        long[] memorization = new long[n + 1];
+        Arrays.fill(memorization, -1);
+        System.out.println(fibonacci(n, memorization));
+    }
+
+    /**
+     * For 0 and 1 set n as 1, for another use Fibonacci
+     * formula. Using array for saving result of calc
+     *
+     * @param n Fibonacci number
+     * @param arr Fibonacci number
+     * @return Fibonacci count
+     */
+    // slow version -> optimization
+    public static long fibonacci(int n, long[] arr) {
+        if (arr[n] != -1) {
+            return arr[n];
+        }
+        if (n <= 1) {
+            return n;
+        }
+        long result = fibonacci(n - 1, arr) + fibonacci(n - 2, arr);
+        arr[n] = result;
+        return result;
+    }
 }
