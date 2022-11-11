@@ -7,25 +7,32 @@ public class Main {
 	
 	public static void main(String[] args) {
 		System.out.println("hi ALGO");
-		int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		int sum;
-		sum = getSumOfArrayWithOutLoops(array, 0);
-		System.out.println(sum);
+		System.out.println(countOfDigitInNumber(234239424,
+				2));
+		
 	}
 	
 	/**
-	 * The getSumOfArrayWithOutLoops, use recursion for get
-	 * sum of loop. Get i=numbers.length and than go
-	 * descending to zero, doing some logic
+	 * The countOfDigitInNumber show count of digit in
+	 * Number, like 123123 for digit 1, count = 2
 	 *
-	 * @param numbers array
-	 * @param i       index should starts with 0
-	 * @return sum array of digit
+	 * @param number some int number, like 23423942698324
+	 * @param lookingDigit some int digit, like 2
+	 * @return count
 	 */
-	public static int getSumOfArrayWithOutLoops(int[] numbers, int i) {
-		if (i == numbers.length) { // till = length, i++
+	public static int countOfDigitInNumber(
+			int number, int lookingDigit
+	) {
+		if (number == 0) {// break condition
 			return 0;
 		}
-		return numbers[ i ] + getSumOfArrayWithOutLoops(numbers, i + 1);
+		// if condition true cont++ and, slice digit
+		if (number % 10 == lookingDigit) {
+			return 1 + countOfDigitInNumber(number / 10,
+					lookingDigit);
+		} else {
+			return countOfDigitInNumber(number / 10,
+					lookingDigit);
+		}
 	}
 }
