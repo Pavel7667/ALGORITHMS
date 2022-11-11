@@ -7,32 +7,24 @@ public class Main {
 	
 	public static void main(String[] args) {
 		System.out.println("hi ALGO");
-		System.out.println(countOfDigitInNumber(234239424,
-				2));
+		System.out.println(fibonacci(20));
+		
 		
 	}
 	
 	/**
-	 * The countOfDigitInNumber show count of digit in
-	 * Number, like 123123 for digit 1, count = 2
+	 * For 0 and 1 set n as 1, for another use Fibonacci
+	 * formula.
 	 *
-	 * @param number some int number, like 23423942698324
-	 * @param lookingDigit some int digit, like 2
-	 * @return count
+	 * @param n Fibonacci number
+	 * @return Fibonacci count
 	 */
-	public static int countOfDigitInNumber(
-			int number, int lookingDigit
-	) {
-		if (number == 0) {// break condition
-			return 0;
+	// slow version
+	public static long fibonacci(int n) {
+		if (n <= 1) {
+			return n;
 		}
-		// if condition true cont++ and, slice digit
-		if (number % 10 == lookingDigit) {
-			return 1 + countOfDigitInNumber(number / 10,
-					lookingDigit);
-		} else {
-			return countOfDigitInNumber(number / 10,
-					lookingDigit);
-		}
+		return fibonacci(n - 1) + fibonacci(n - 2);
+		
 	}
 }
