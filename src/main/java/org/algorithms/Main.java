@@ -4,75 +4,54 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Merge sort");
+        System.out.println("Quick sort");
 
         int[] array = {1, 2415, 567, 4564, 443242, 775, 453, 756745, 34, 64, 342, 7456};
         System.out.println(Arrays.toString(array));
-        mergeSort(array);
+        quickSort(array, 0, array.length - 1);
         System.out.println(Arrays.toString(array));
 
 
     }
 
     /**
-     * Simple mergeSort
-     * run-time O ( n log n)
-     * space complexity O(n)
+     * Simple quickSort O = n log (n)
+     * Space complexity O = log (n)
+     * In case when array already sorted O = n^2
      *
      * @param array of digit
      */
-    public static void mergeSort(int[] array) {
-        int length = array.length;
-        if (length <= 1) return; // base case
+    public static void quickSort(int[] array, int start, int end) {
 
-        int middle = length / 2;
-        int[] leftArray = new int[middle];
-        int[] rightArray = new int[length - middle];
-
-        int i = 0; // left array;
-        int j = 0; // right array;
-
-        // filling arrays
-        for (; i < length; i++) {
-            if (i < middle) {
-                leftArray[i] = array[i];
-            } else {
-                rightArray[j] = array[i];
-                j++;
-            }
+        if (end <= start) {
+            return; // base case
         }
-        mergeSort(leftArray);
-        mergeSort(rightArray);
-        merge(leftArray, rightArray, array);
+
+        int pivot = partition(array, start, end);
+
+        quickSort(array, start, pivot - 1);
+        quickSort(array, pivot + 1, end);
     }
 
-    public static void merge(int[] leftArray, int[] rightArray, int[] array) {
-        int leftSize = array.length / 2;
-        int rightSize = array.length - leftSize;
-        int i = 0;
-        int left = 0;
-        int right = 0;
+    public static int partition(int[] array, int start, int end) {
 
-        while (left < leftSize && right < rightSize) {
-            if (leftArray[left] < rightArray[right]) {
-                array[i] = leftArray[left];
+        int pivot = array[end];
+        int i = start - 1;
+
+        for (int j = start; j <= end - 1; j++) {
+            if (array[j] < pivot) {
                 i++;
-                left++;
-            } else {
-                array[i] = rightArray[right];
-                i++;
-                right++;
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
-        while (left < leftSize) {
-            array[i] = leftArray[left];
-            i++;
-            left++;
-        }
-        while (right < rightSize) {
-            array[i] = rightArray[right];
-            i++;
-            right++;
-        }
+        i++;
+        int temp = array[i];
+        array[i] = array[end];
+        array[end] = temp;
+
+        return i;
     }
+
 }
