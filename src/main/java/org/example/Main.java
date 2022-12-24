@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {19, 28, 37, 4, 5, 6, 7, 28, 29, 10};
-        System.out.println(findSecondMaximumValues(arr));
+        System.out.println("Cловарь х10");
+
 
     }
 
