@@ -1,14 +1,13 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        System.out.println(Arrays.toString(arr));
-        System.out.println(Arrays.toString(removeEven(arr)));
-        reverseArray(arr, 0, arr.length-1);
-        System.out.println(Arrays.toString(arr));
+        int[] arr = {19, 28, 37, 4, 5, 6, 7, 8, 9, 10};
+        System.out.println(findMinimum(arr));
 
     }
 
@@ -39,5 +38,18 @@ public class Main {
             start++;
             end--;
         }
+    }
+
+    public static int findMinimum(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            throw new RuntimeException("invalid input");
+        }
+        int min = arr[0];
+        for (int j : arr) {
+            if (j < min) {
+                min = j;
+            }
+        }
+        return min;
     }
 }
