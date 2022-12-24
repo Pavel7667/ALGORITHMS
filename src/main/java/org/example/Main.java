@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {19, 28, 37, 4, 5, 6, 7, 8, 9, 10};
-        System.out.println(findMinimum(arr));
+        int[] arr = {19, 28, 37, 4, 5, 6, 7, 28, 29, 10};
+        System.out.println(findSecondMaximumValues(arr));
 
     }
 
@@ -51,5 +51,19 @@ public class Main {
             }
         }
         return min;
+    }
+
+    public static int findSecondMaximumValues(int[] arr) {
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
+        for (int j : arr) {
+            if (j > max) {
+                secondMax = max;
+                max = j;
+            } else if (j > secondMax && j != max) {
+                secondMax = j;
+            }
+        }
+        return secondMax;
     }
 }
