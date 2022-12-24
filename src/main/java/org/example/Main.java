@@ -1,25 +1,31 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
-        double now = System.currentTimeMillis();
-        Main main = new Main();
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(removeEven(arr)));
 
-        System.out.println(main.findSumLoop(999999));
-
-        System.out.println("time taken " + (System.currentTimeMillis()-now)+" millisecond");
     }
 
-    private int findSumAlgo(int i) {
-        return i * (i + 1) / 2;
-    }
-
-    private int findSumLoop(int i) {
-        int sum = 0;
-        for (int j = 0; j < i; j++) {
-            sum = sum + j;
+    public static int[] removeEven(int[] arr) {
+        int oddCount = 0;
+        for (int j : arr) {
+            if (j % 2 != 0) {
+                oddCount++;
+            }
         }
-        return sum;
-    }
+        int[] result = new int[oddCount];
 
+        int idx = 0;
+        for (int j : arr) {
+            if (j % 2 != 0) {
+                result[idx] = j;
+                idx++;
+            }
+        }
+        return result;
+    }
 }
